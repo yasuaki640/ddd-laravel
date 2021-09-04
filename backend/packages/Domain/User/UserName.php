@@ -2,12 +2,12 @@
 declare(strict_types=1);
 
 
-namespace packages\Domain\User;
+namespace Packages\Domain\User;
 
 
 /**
  * Class UserName
- * @package packages\Domain\User
+ * @package Packages\Domain\User
  */
 class UserName
 {
