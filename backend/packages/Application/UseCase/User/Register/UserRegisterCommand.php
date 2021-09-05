@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Packages\UseCase\User\Register;
+namespace Packages\Application\UseCase\User\Register;
 
 
 /**
  * Class UserRegisterCommand
- * @package Packages\UseCase\User\Register
+ * @package Packages\Application\UseCase\User\Register
  */
 class UserRegisterCommand
 {
