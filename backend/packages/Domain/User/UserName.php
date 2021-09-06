@@ -14,7 +14,7 @@ class UserName
     /**
      * @var string
      */
-    private string $userName;
+    private string $value;
 
     /**
      * UserName constructor.
@@ -22,6 +22,16 @@ class UserName
      */
     public function __construct(string $userName)
     {
-        $this->userName = $userName;
+        $this->value = $userName;
     }
+
+    /**
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
+
 }

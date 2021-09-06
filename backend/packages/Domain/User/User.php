@@ -12,9 +12,9 @@ namespace Packages\Domain\User;
 class User
 {
     /**
-     * @var UserId
+     * @var UserId|null
      */
-    private UserId $userId;
+    private ?UserId $userId;
 
     /**
      * @var UserName
@@ -23,12 +23,20 @@ class User
 
     /**
      * User constructor.
-     * @param UserId $userId
+     * @param UserId|null $userId
      * @param UserName $userName
      */
-    public function __construct(UserId $userId, UserName $userName)
+    public function __construct(?UserId $userId, UserName $userName)
     {
         $this->userId = $userId;
         $this->userName = $userName;
+    }
+
+    /**
+     * @return UserName
+     */
+    public function getUserName(): UserName
+    {
+        return $this->userName;
     }
 }

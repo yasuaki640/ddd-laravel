@@ -1,26 +1,36 @@
 <?php
-
+declare(strict_types=1);
 
 namespace Packages\Application\UseCase\User\Register;
 
+
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * Class UserRegisterResponse
  * @package Packages\Application\UseCase\User\Register
  */
-class UserRegisterResponse
+class UserRegisterResponse implements Arrayable
 {
     /**
-     * @var string
+     * @var int
      */
-    private string $createdUserId;
+    private int $createdUserId;
 
     /**
      * UserCreateResponse constructor.
-     * @param string $createdUserId
+     * @param int $createdUserId
      */
     public function __construct(int $createdUserId)
     {
         $this->createdUserId = $createdUserId;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }
