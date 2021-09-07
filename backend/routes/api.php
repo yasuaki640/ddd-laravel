@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('user')->group(function () {
     Route::post('', [\App\Http\Controllers\UserController::class, 'register']);
+    Route::get('{id}', [\App\Http\Controllers\UserController::class, 'getById']);
 });

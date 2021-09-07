@@ -36,4 +36,9 @@ class UserController extends Controller
             $registerPost->input('user_name')
         );
     }
+
+    public function getById(int $id)
+    {
+        response()->json();
+    }
 }
