@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\RegisterPost;
+use Packages\Application\UseCase\User\GetById\UserGetByIdCommand;
+use Packages\Application\UseCase\User\GetById\UserGetByIdServiceInterface;
 use Packages\Application\UseCase\User\Register\UserRegisterCommand;
 use Packages\Application\UseCase\User\Register\UserRegisterServiceInterface;
 
@@ -37,8 +39,25 @@ class UserController extends Controller
         );
     }
 
-    public function getById(int $id)
+    /**
+     * @param UserGetByIdServiceInterface $service
+     * @param int $id
+     */
+    public function getById(UserGetByIdServiceInterface $service, int $id)
     {
-        response()->json();
+        $command = $this->makeGetByIdCommand($id);
+
+        $data = $service->handle($command);
+
+        response()->json($data->toArray());
+    }
+
+    /**
+     * @param int $id
+     * @return UserGetByIdCommand
+     */
+    private function makeGetByIdCommand(int $id)
+    {
+        return new UserGetByIdCommand($id);
     }
 }

@@ -12,7 +12,7 @@ class UserControllerTest extends TestCase
 
     public function test_register()
     {
-        $response = $this->post('/api/user', [
+        $response = $this->postJson('/api/user', [
             'user_name' => 'test'
         ]);
 
@@ -27,8 +27,13 @@ class UserControllerTest extends TestCase
     {
         $user = UserEloquent::factory()->create();
 
-        $response = $this->get('/api/user/' . $user->id);
+        $response = $this->getJson('/api/user/' . $user->id);
 
-        $response->assertOk();
+        $response
+            ->assertOk()
+            ->assertJson([
+                'id' => $user->id,
+                'user_name' => $user->user_name
+            ]);
     }
 }

@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Packages\Domain\User;
 
 
@@ -38,5 +37,13 @@ class User
     public function getUserName(): UserName
     {
         return $this->userName;
+    }
+
+    /**
+     * @return UserId|null
+     */
+    public function getId(): ?UserId
+    {
+        return $this->userId;
     }
 }

@@ -15,4 +15,10 @@ interface UserRepositoryInterface
      * @return mixed
      */
     public function save(User $user): int;
+
+    /**
+     * @param UserId $id
+     * @return User
+     */
+    public function getById(UserId $id): User;
 }

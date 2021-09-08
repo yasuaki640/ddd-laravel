@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Packages\Application\UseCase\User\GetById\UserGetByIdService;
+use Packages\Application\UseCase\User\GetById\UserGetByIdServiceInterface;
 use Packages\Application\UseCase\User\Register\UserRegisterService;
 use Packages\Application\UseCase\User\Register\UserRegisterServiceInterface;
 use Packages\Domain\User\UserFactoryInterface;
@@ -22,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRegisterServiceInterface::class,
             UserRegisterService::class
+        );
+
+        $this->app->bind(
+            UserGetByIdServiceInterface::class,
+            UserGetByIdService::class
         );
 
         $this->app->bind(
