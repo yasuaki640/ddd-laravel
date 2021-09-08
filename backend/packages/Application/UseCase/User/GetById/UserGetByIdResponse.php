@@ -33,8 +33,8 @@ class UserGetByIdResponse implements Arrayable
     public function toArray(): array
     {
         return [
-            'id' => $this->user->getId(),
-            'user_name' => $this->user->getUserName()
+            'id' => $this->user?->getId()?->getValue(),
+            'user_name' => $this->user?->getUserName()?->getValue()
         ];
     }
 }
