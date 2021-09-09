@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\RegisterPost;
+use Illuminate\Http\JsonResponse;
 use Packages\Application\UseCase\User\GetById\UserGetByIdCommand;
 use Packages\Application\UseCase\User\GetById\UserGetByIdServiceInterface;
 use Packages\Application\UseCase\User\Register\UserRegisterCommand;
@@ -42,14 +43,15 @@ class UserController extends Controller
     /**
      * @param UserGetByIdServiceInterface $service
      * @param int $id
+     * @return JsonResponse
      */
-    public function getById(UserGetByIdServiceInterface $service, int $id)
+    public function getById(UserGetByIdServiceInterface $service, int $id): JsonResponse
     {
         $command = $this->makeGetByIdCommand($id);
 
         $data = $service->handle($command);
 
-        response()->json($data->toArray());
+        return response()->json($data->toArray());
     }
 
     /**
