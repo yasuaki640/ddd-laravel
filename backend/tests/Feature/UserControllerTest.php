@@ -16,7 +16,9 @@ class UserControllerTest extends TestCase
             'user_name' => 'test'
         ]);
 
-        $response->assertOk();
+        $response
+            ->assertOk()
+            ->assertJsonStructure(['id']);
 
         $this->assertDatabaseHas('users', [
             'user_name' => 'test'

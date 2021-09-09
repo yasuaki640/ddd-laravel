@@ -19,14 +19,15 @@ class UserController extends Controller
     /**
      * @param UserRegisterServiceInterface $service
      * @param RegisterPost $request
+     * @return JsonResponse
      */
-    public function register(UserRegisterServiceInterface $service, RegisterPost $request)
+    public function register(UserRegisterServiceInterface $service, RegisterPost $request): JsonResponse
     {
         $command = $this->makeRegisterCommand($request);
 
         $data = $service->handle($command);
 
-        response()->json($data->toArray());
+        return response()->json($data->toArray());
     }
 
     /**
@@ -58,7 +59,7 @@ class UserController extends Controller
      * @param int $id
      * @return UserGetByIdCommand
      */
-    private function makeGetByIdCommand(int $id)
+    private function makeGetByIdCommand(int $id): UserGetByIdCommand
     {
         return new UserGetByIdCommand($id);
     }
