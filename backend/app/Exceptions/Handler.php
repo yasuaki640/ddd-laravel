@@ -3,6 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Packages\Domain\User\Exception\UserRegisterException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +41,20 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * @param Request $request
+     * @param Throwable $e
+     * @return Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws Throwable
+     */
+    public function render($request, Throwable $e): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
+    {
+        if ($e instanceof UserRegisterException) {
+            abort(Response::HTTP_UNPROCESSABLE_ENTITY, $e->getMessage());
+        }
+
+        return parent::render($request, $e);
     }
 }

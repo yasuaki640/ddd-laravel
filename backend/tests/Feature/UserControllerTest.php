@@ -25,6 +25,19 @@ class UserControllerTest extends TestCase
         ]);
     }
 
+    public function test_register_fail_duplicate_user_name()
+    {
+        UserEloquent::factory()->create([
+            'user_name' => 'duplicate user name'
+        ]);
+
+        $response = $this->postJson('/api/user', [
+            'user_name' => 'duplicate user name'
+        ]);
+
+        $response->assertUnprocessable();
+    }
+
     public function test_get_by_id()
     {
         $user = UserEloquent::factory()->create();

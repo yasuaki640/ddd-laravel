@@ -21,4 +21,10 @@ interface UserRepositoryInterface
      * @return User
      */
     public function getById(UserId $id): User;
+
+    /**
+     * @param UserName $name
+     * @return bool
+     */
+    public function existsDuplicateUserName(UserName $name): bool;
 }

@@ -7,6 +7,7 @@ namespace Packages\Infrastructure\Eloquent;
 use Packages\Domain\User\User;
 use Packages\Domain\User\UserFactoryInterface;
 use Packages\Domain\User\UserId;
+use Packages\Domain\User\UserName;
 use Packages\Domain\User\UserRepositoryInterface;
 
 /**
@@ -49,5 +50,16 @@ class UserRepository implements UserRepositoryInterface
         $userEloquent = UserEloquent::find($id->getValue());
 
         return $this->factory->createFromEloquent($userEloquent);
+    }
+
+    /**
+     * @param UserName $name
+     * @return bool
+     */
+    public function existsDuplicateUserName(UserName $name): bool
+    {
+        return UserEloquent::query()
+            ->where('user_name',$name->getValue())
+            ->exists();
     }
 }
