@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Packages\Application\UseCase\User\Register;
 
 
+use Packages\Domain\User\Exception\CannotCreateUserNameException;
 use Packages\Domain\User\Exception\UserRegisterException;
 use Packages\Domain\User\UserFactoryInterface;
 use Packages\Domain\User\UserName;
