@@ -6,7 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Packages\Domain\User\Exception\UserRegisterException;
+use Packages\Domain\User\Exception\CannotCreateUserException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
     {
-        if ($e instanceof UserRegisterException) {
+        if ($e instanceof CannotCreateUserException) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY, $e->getMessage());
         }
 

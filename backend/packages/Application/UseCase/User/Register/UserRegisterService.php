@@ -5,7 +5,7 @@ namespace Packages\Application\UseCase\User\Register;
 
 
 use Packages\Domain\User\Exception\CannotCreateUserNameException;
-use Packages\Domain\User\Exception\UserRegisterException;
+use Packages\Domain\User\Exception\CannotCreateUserException;
 use Packages\Domain\User\UserFactoryInterface;
 use Packages\Domain\User\UserName;
 use Packages\Domain\User\UserRepositoryInterface;
@@ -52,14 +52,14 @@ class UserRegisterService implements UserRegisterServiceInterface
     /**
      * @param UserRegisterCommand $command
      * @return UserRegisterResponse
-     * @throws UserRegisterException
+     * @throws CannotCreateUserException
      */
     public function handle(UserRegisterCommand $command): UserRegisterResponse
     {
         $userName = new UserName($command->userName);
 
         if ($this->service->exists($userName)) {
-            throw new UserRegisterException('A user with the same user name already exists.');
+            throw new CannotCreateUserException('A user with the same user name already exists.');
         }
         $user = $this->factory->create($userName);
 
