@@ -40,7 +40,9 @@ class UserControllerTest extends TestCase
 
     public function test_get_by_id()
     {
-        $user = UserEloquent::factory()->create();
+        $user = UserEloquent::factory()->create([
+            'user_name' => 'test user name'
+        ]);
 
         $response = $this->getJson('/api/user/' . $user->id);
 
