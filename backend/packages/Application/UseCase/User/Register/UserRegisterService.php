@@ -52,7 +52,7 @@ class UserRegisterService implements UserRegisterServiceInterface
     /**
      * @param UserRegisterCommand $command
      * @return UserRegisterResponse
-     * @throws CannotCreateUserException
+     * @throws CannotCreateUserNameException|CannotCreateUserException
      */
     public function handle(UserRegisterCommand $command): UserRegisterResponse
     {

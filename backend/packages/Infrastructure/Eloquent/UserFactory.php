@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Packages\Infrastructure\Eloquent;
 
 
+use Packages\Domain\User\Exception\CannotCreateUserNameException;
 use Packages\Domain\User\User;
 use Packages\Domain\User\UserFactoryInterface;
 use Packages\Domain\User\UserId;
@@ -27,6 +28,7 @@ class UserFactory implements UserFactoryInterface
     /**
      * @param UserEloquent $eloquent
      * @return User
+     * @throws CannotCreateUserNameException
      */
     public function createFromEloquent(UserEloquent $eloquent): User
     {
